@@ -4,7 +4,6 @@ from .forms import PostForm # forms.py에서 PostForm 가져오기
 
 def detail(request, pk): # request와 pk도 인자로 받음
     post = get_object_or_404(Post, pk=pk) # 해당 객체가 있으면 가져오고 없으면 404에러, pk값은 blog.id
-    print(type(pk))
     return render(request, 'detail.html', {'post':post})
 
 
@@ -40,3 +39,5 @@ def delete(request, pk):
 
 
     
+
+
