@@ -10,7 +10,7 @@
     <h1>제목: {{ obj.title }}</h1>
     <p>내용: {{ obj.body }}</p>
     <p>{{ obj.pk }}</pk>
-    <p>올린날짜 참고로 미국날짜임: {{ obj.date }}</p>
+    <p>올린날짜: {{ obj.date }}</p>
     <a href="{% url 'detail' obj.pk %}">자세히보기</a>
     {% endfor %}
 </body>
