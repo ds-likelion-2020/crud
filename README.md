@@ -1,5 +1,5 @@
 # 덕성멋사 수업자료 - CRUD
-주소: https://limitless-earth-99193.herokuapp.com/
+
 만든사람: 이은정
 
 # 퀴즈답
