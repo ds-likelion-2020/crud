@@ -4,17 +4,17 @@ from .forms import PostForm, CommentForm # forms.py에서 PostForm 가져오기
 
 def detail(request, pk): # request와 pk도 인자로 받음
     post = get_object_or_404(Post, pk=pk) # 해당 객체가 있으면 가져오고 없으면 404에러, pk값은 blog.id
-    comment = Comment.objects 
+    comments = Comment.objects.filter(post_id = post.pk)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.parent = post
+            comment.post = post
             comment.save()
             return redirect('detail', pk=post.pk) 
     else:
         form = CommentForm()
-    return render(request, 'detail.html', {'post':post, 'form':form, 'post':post, 'comment':comment})
+    return render(request, 'detail.html', {'post':post, 'form':form, 'comments':comments })
 
 
 def main(request):

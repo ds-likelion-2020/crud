@@ -10,12 +10,14 @@ class CommonInfo(models.Model):
         abstract = True
 class Post(CommonInfo):
     title = models.CharField(max_length=100) #제목
+    comment = models.ForeignKey('Comment', on_delete=models.DO_NOTHING, related_name='comment_id', default='', blank=True, null=True)
    
     def __str__(self):
         return self.title
 
 class Comment(CommonInfo):
-    parent = models.ForeignKey('Post', on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='post_id', default='')
+    
 
     
 
