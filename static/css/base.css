@@ -13,7 +13,6 @@ body {
 header {
     height: 20%;
     width: 100%;
-    back
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -47,6 +46,7 @@ footer > p {
 
 header > h1 {
     width: 100%;
+    font-family: 'Notable', sans-serif;
 }
 
 header > nav {

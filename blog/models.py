@@ -18,7 +18,7 @@ class Post(CommonInfo):
 
 class Comment(CommonInfo):
     post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='post_id', default='')
-    
+
 
     
 

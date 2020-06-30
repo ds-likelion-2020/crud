@@ -49,4 +49,3 @@ def delete(request, pk):
     return redirect('main')
 
 
-
