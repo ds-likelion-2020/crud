@@ -4,17 +4,17 @@ from .forms import PostForm, CommentForm # forms.py에서 PostForm 가져오기
 
 def detail(request, pk): # request와 pk도 인자로 받음
     post = get_object_or_404(Post, pk=pk) # 해당 객체가 있으면 가져오고 없으면 404에러, pk값은 blog.id
-    comments = Comment.objects.filter(post_id = post.pk)
+    comments = Comment.objects.filter(post_id = post.pk) # 해당 Post 객체에 종속된 comments 객체들만 나타내기
     if request.method == 'POST':
         form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.post = post
-            comment.save()
+        if form.is_valid(): # 유효성 검증
+            comment = form.save(commit=False) # save 함수를 실행하지만 실제 DB 반영 X
+            comment.post = post 
+            comment.save() # 실제 저장
             return redirect('detail', pk=post.pk) 
     else:
         form = CommentForm()
-    return render(request, 'detail.html', {'post':post, 'form':form, 'comments':comments })
+    return render(request, 'detail.html', {'post':post, 'form':form, 'comments':comments})
 
 
 def main(request):

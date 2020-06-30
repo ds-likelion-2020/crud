@@ -11,6 +11,7 @@ class CommonInfo(models.Model):
 class Post(CommonInfo):
     title = models.CharField(max_length=100) #제목
     comment = models.ForeignKey('Comment', on_delete=models.DO_NOTHING, related_name='comment_id', default='', blank=True, null=True)
+    img = models.ImageField(upload_to='img/%y/$m/$d', null=True, blank=True)
    
     def __str__(self):
         return self.title

@@ -10,24 +10,21 @@
 </head>
 <body>
 {% block content %}
-    <table class='post_list'>
-        <tr>
-            <td colspan='1' class='post_id'>번호</td>
-            <td colspan='4' class='post_title'>제목</td>
-            <td colspan='2' class='post_date'>등록일</td>
-        </tr>
+    <div class='posts wrapper'>
         {% for obj in posts.all %}
-        <tr class='item' onclick="location.href='{% url 'detail' obj.pk %}'">
-            <td colspan='1' class='post_id'>
-                <span>{{ obj.pk }}</span>
-            </td>
-            <td colspan='4' class='post_title'>
-                <span>{{ obj.title }}</span>
-            </td>
-            <td colspan='2' class='post_date'>
-                <p>{{ obj.date }}</p>
-            </td>
-        </tr>
+        <article class='post_item {{ obj.pk }}' onclick="location.href='{% url 'detail' obj.pk %}'">
+            <ul class='item'>
+                <li class='post_img'>
+                    <img class='post square' src='{{ obj.img }}'>
+                </li>
+                <li class='post_title'>
+                    <span>{{ obj.title }}</span>
+                </li>
+                <li class='post_date'>
+                    <p>{{ obj.date }}</p>
+                </li>
+            </ul>
+        </article>
         {% endfor %}
     </table>
 {% endblock %}
