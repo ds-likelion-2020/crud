@@ -1,14 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post
-from .forms import PostForm # forms.py에서 PostForm 가져오기
+from .models import Post, Comment
+from .forms import PostForm, CommentForm # forms.py에서 PostForm 가져오기
 
 def detail(request, pk): # request와 pk도 인자로 받음
     post = get_object_or_404(Post, pk=pk) # 해당 객체가 있으면 가져오고 없으면 404에러, pk값은 blog.id
-    return render(request, 'detail.html', {'post':post})
+    comment = Comment.objects 
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.parent = post
+            comment.save()
+            return redirect('detail', pk=post.pk) 
+    else:
+        form = CommentForm()
+    return render(request, 'detail.html', {'post':post, 'form':form, 'post':post, 'comment':comment})
 
 
 def main(request):
     posts = Post.objects
+    posts.order_by('date')
     return render(request, 'posts.html', {'posts':posts})
     
 def create(request):
@@ -37,7 +48,5 @@ def delete(request, pk):
     post.delete()
     return redirect('main')
 
-
-    
 
 

@@ -24,4 +24,5 @@ urlpatterns = [
     path('detail/<int:pk>/', blog.views.detail, name='detail'),
     path('update/<int:pk>/', blog.views.update, name='update'),
     path('delete/<int:pk>/', blog.views.delete, name='delete'),
+
 ]

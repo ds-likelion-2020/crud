@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +9,39 @@
     <title>{{ post.pk }}번째 게시물</title>
 </head>
 <body>
+{% block content %}
+
+<!-- post view -->
     <h1>{{ post.title }}</h1>
     <p>게시물 번호(id): {{ post.pk }}</p>
     <p>글쓴이: {{ post.author }}</p>
     <p>등록일: {{ post.date }}</p>
     <p>{{ post.body }}</p>
     <button type='button' onclick='location.href="{% url "delete" post.pk %}"'>삭제하기</button>
+
+<!-- comment : list  -->
+    <table class='comment_all'>
+    {% for obj in comment.all %}
+        <tr>
+            <td colspan='1'><span class='comment author'>{{ obj.author }}</span></td>
+            <td colspan='4'><span class='comment body'>{{ obj.body }}</span></td>
+        <tr>
+        {% endfor %}
+    </table>
+<!-- end  -->
+
+
+<!-- comment : form -->
+    <form method='post' action=''>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='등록하기'/>
+    </form>
+<!-- end -->
+
+
+{% endblock content %}
 </body>
 </html>
 
+ 

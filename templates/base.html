@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배포</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+</head>
+<body class='body'>
+    <header>
+        <h1>sample blog</h1>
+        <nav class='nav'>
+            <ul>
+                <li class='nav_item'>
+                    <span>전체글보기</span>
+                </li>
+                <li class='nav_item'>
+                    <span>새글쓰기</span>
+                </li>
+                <li class="nav_item">
+                    <span>home</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <p>Copyright 2020. EUNJUNG LEE All rights reserved.</p>
+        <p><span class="material-icons">mail_outline</span><span>asaprocky123@likelion.org</span></p>
+    </footer>
+ 
+</body>
+</html>
